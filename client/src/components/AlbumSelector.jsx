@@ -14,7 +14,7 @@ export default function AlbumSelector({ token, sdk }) {
 		const fetchAlbums = async () => {
 			try {
 				const response = await fetch(
-					"https://api.spotify.com/v1/me/albums?limit=100",
+					"https://api.spotify.com/v1/me/albums?limit=50",
 					{
 						method: "GET",
 						headers: {
