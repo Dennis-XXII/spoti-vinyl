@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+	--color-te-gray: #c7c3c0;
+	--color-te-dark: #545251;
+	--color-te-red: #d42a02;
+	--color-te-orange: #fb702c;
+	--color-te-bg: #171717;
+}
+
+/* Custom shadows for the EP-133 feel */
+.shadow-te-button {
+	box-shadow:
+		10px 10px 8px rgba(0, 0, 0, 0.38),
+		inset 1.5px 1.5px 2px #ffffff,
+		inset -3.2px -3.2px 8px #c7c3c0;
+}
+.shadow-te-button-active {
+	box-shadow:
+		0px 0px 0px rgba(0, 0, 0, 0),
+		inset 0.5px 0.5px 4px #000000,
+		inset -3.2px -3.2px 8px #c7c3c0;
+}
+.shadow-te-red-button {
+	box-shadow:
+		10px 10px 8px rgba(0, 0, 0, 0.38),
+		inset 2px 2px 10px #fb702c,
+		inset -4px -4px 1px #d42a02;
+}
