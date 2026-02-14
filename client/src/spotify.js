@@ -2,7 +2,7 @@
 
 // Ensure these are defined; otherwise, the app will fail immediately
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
+const redirectUri = window.location.origin + "/";
 
 if (!clientId || !redirectUri) {
 	console.error("Environment variables missing! Check your .env file.");
