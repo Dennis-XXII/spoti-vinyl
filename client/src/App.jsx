@@ -85,18 +85,25 @@ export default function App() {
 
 	if (!token) {
 		return (
-			<div className="grid place-items-center bg-[#e8e6e3]">
-				<button
-					onClick={async () => (window.location.href = await authUrl())}
-					className="px-8 py-3 bg-orange-500 text-black font-bold rounded-full hover:scale-110 transition-all duration-300">
-					Login with Spotify
-				</button>
+			<div className="flex min-h-screen place-items-center bg-[#e8e6e3]">
+				<div className="max-w-xl my-auto text-center flex flex-col mx-auto gap-4 place-items-center">
+					<h1 className="text-2xl font-bold font-teenage">
+						{" "}
+						Teenage Engineering IE133
+						<br /> Vinyl Player
+					</h1>
+					<button
+						onClick={async () => (window.location.href = await authUrl())}
+						className="max-w-[300px] px-8 py-3 bg-[#2a2826] text-te-red px-6 py-4 rounded-[12px] font-mono text-sm tracking-widest outline-none border-b-4 border-[#1a1816] shadow-inner uppercase">
+						Login_with_Spotify...
+					</button>
+				</div>
 			</div>
 		);
 	}
 
 	return (
-		<div className="flex bg-[#e8e6e3] gap-2 px-6 min-h-screen overflow-hidden">
+		<div className="flex bg-[#e8e6e3] gap-8 px-6 min-h-screen overflow-hidden">
 			<VinylPlayer
 				sdk={player}
 				isPlaying={state ? !state.paused : false}

@@ -76,12 +76,14 @@ export default function AlbumSelector({ token, sdk }) {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-8 px-12 bg-[#e8e6e3] font-['Space_Grotesk']">
+		<div className="flex flex-col my-auto items-center justify-center gap-8 p-12 bg-gradient-to-b from-[#c4c2bf] to-[#a8a6a3] rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.3)] border border-[#8a8885] font-['Space_Grotesk']">
+			<div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-[32px]" />
+
 			{/* SEARCH PANEL */}
 			<div className="w-full max-3xl bg--color-te-orange p-6 rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.1),_inset_0_1px_0_white/40] border border-[#8a8885]">
 				<input
 					type="text"
-					placeholder="SEARCH_YOUR_SPOTIFY_ALBUMS/ARTISTS..."
+					placeholder="SEARCH_YOUR_ALBUMS/ARTISTS..."
 					value={searchQuery}
 					onChange={(e) => {
 						setSearchQuery(e.target.value);
@@ -92,7 +94,7 @@ export default function AlbumSelector({ token, sdk }) {
 			</div>
 
 			{/* ALBUM GRID */}
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-4xl max-h-[400px]">
+			<div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-4xl max-h-[400px]">
 				{displayedAlbums.length > 0 ? (
 					displayedAlbums.map((album) => (
 						<motion.button
@@ -127,23 +129,49 @@ export default function AlbumSelector({ token, sdk }) {
 
 			{/* PAGINATION */}
 			<div className="flex items-center gap-6">
-				<button
-					disabled={currentPage === 0}
-					onClick={() => setCurrentPage((p) => p - 1)}
-					className="w-[56px] h-[56px] bg-[#d4d2cf] rounded-[12px] shadow-[0_2px_0_#8a8889,_0_8px_12px_rgba(0,0,0,0.2),_inset_0_1px_0_rgba(255,255,255,0.5)] active:shadow-[0_2px_0_#8a8885,_0_4px_8px_rgba(0,0,0,0.2),_inset_0_1px_0_rgba(255,255,255,0.5)] active:translate-y-[2px] transition-all border border-white/20">
-					<svg className="w-5 h-5 fill-[#2a2826]" viewBox="0 0 24 24">
-						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-					</svg>
-				</button>
-				<button
-					disabled={currentPage >= pageCount - 1}
-					onClick={() => setCurrentPage((p) => p + 1)}
-					className="w-[56px] h-[56px] bg-[#d4d2cf] rounded-[12px] shadow-[0_2px_0_#8a8889,_0_8px_12px_rgba(0,0,0,0.2),_inset_0_1px_0_rgba(255,255,255,0.5)] active:shadow-[0_2px_0_#8a8885,_0_4px_8px_rgba(0,0,0,0.2),_inset_0_1px_0_rgba(255,255,255,0.5)] active:translate-y-[2px] transition-all border border-white/20">
-					<svg className="w-5 h-5 fill-[#2a2826]" viewBox="0 0 24 24">
-						<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-					</svg>
-				</button>
+				<div className="w-[72px] h-[72px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+					{/* THE BUTTON */}
+					<button
+						disabled={currentPage === 0}
+						onClick={() => setCurrentPage((p) => p - 1)}
+						className="w-[67px] h-[67px] bg-te-gray rounded-[10px] 
+                   shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+                   active:shadow-[inset_0.5px_0.5px_4px_#000000] 
+                   active:translate-y-[1px] transition-all 
+                   flex flex-col items-center justify-center
+                   disabled:opacity-60 disabled:cursor-not-allowed group">
+						<span className="text-te-dark font-teenage text-[9px] tracking-widest uppercase mb-1 opacity-80 group-active:scale-95">
+							Prev
+						</span>
+						<svg
+							className="w-4 h-4 fill-te-dark group-active:scale-90 transition-transform"
+							viewBox="0 0 24 24">
+							<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+						</svg>
+					</button>
+				</div>
+				<div className="w-[72px] h-[72px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+					<button
+						disabled={currentPage >= pageCount - 1}
+						onClick={() => setCurrentPage((p) => p + 1)}
+						className="w-[67px] h-[67px] bg-te-gray rounded-[10px] 
+                   shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+                   active:shadow-[inset_0.5px_0.5px_4px_#000000] 
+                   active:translate-y-[1px] transition-all 
+                   flex flex-col items-center justify-center
+                   disabled:opacity-60 disabled:cursor-not-allowed group">
+						<span className="text-te-dark text-[9px] tracking-widest uppercase mb-1 opacity-80 group-active:scale-95">
+							Prev
+						</span>
+						<svg
+							className="w-4 h-4 fill-te-dark group-active:scale-90 transition-transform"
+							viewBox="0 0 24 24">
+							<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+						</svg>
+					</button>
+				</div>
 			</div>
+			<div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent rounded-b-[32px]" />
 		</div>
 	);
 }
