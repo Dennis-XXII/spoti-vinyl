@@ -103,27 +103,27 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 	const progress = duration > 0 ? (position / duration) * 100 : 0;
 
 	return (
-		<div className="flex flex-col items-center justify-center bg-[#e8e6e3] font-['Space_Grotesk',_'Helvetica_Neue',_sans-serif]">
+		<div className="flex flex-col items-center pt-8 sm:pt-8 md:pt-14 max-w-screen px-2 sm:px-4 bg-[#e8e6e3] font-['Space_Grotesk',_'Helvetica_Neue',_sans-serif]">
 			{/* EP-133 Case - Textured Grey Metal */}
-			<div className="relative bg-gradient-to-b from-[#c4c2bf] to-[#a8a6a3] p-17 rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.3)] border border-[#8a8885]">
+			<div className="relative bg-gradient-to-b from-[#c4c2bf] to-[#a8a6a3] p-4 sm:p-8 md:p-17 rounded-[20px] sm:rounded-[28px] md:rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.3)] border border-[#8a8885] w-full max-w-[95vw] sm:max-w-full">
 				{/* Top edge highlight */}
-				<div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-[32px]" />
+				<div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-[20px] sm:rounded-t-[28px] md:rounded-t-[32px]" />
 
-				<div className="flex items-center gap-8">
+				<div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8">
 					{/* LEFT SIDE - PREV TRACK & REWIND */}
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-2 sm:gap-3">
 						{/* PREV TRACK BUTTON */}
-						<div className="p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+						<div className="p-[2px] sm:p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
 							<button
 								onClick={() => sdk?.previousTrack()}
-								className="group relative flex flex-col items-center justify-center w-[72px] h-[72px] bg-te-red rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+								className="group relative flex flex-col items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px] bg-te-red rounded-[10px] sm:rounded-[11px] md:rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
                    active:shadow-[inset_0.5px_0.5px_4px_#000000] 
                    active:translate-y-[1px] transition-all  active:translate-y-[2px] transition-all">
-								<span className="text-te-gray font-bold text-[8px] tracking-[0.15em] mb-1 uppercase">
+								<span className="text-te-gray font-bold text-[7px] sm:text-[7.5px] md:text-[8px] tracking-[0.15em] mb-0.5 sm:mb-1 uppercase">
 									Prev
 								</span>
 								<svg
-									className="w-4 h-4 fill-te-gray group-active:scale-90 transition-transform"
+									className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-te-gray group-active:scale-90 transition-transform"
 									viewBox="0 0 24 24">
 									<path d="M6 6h2v12H6zm3.5 6L18 18V6z" />
 								</svg>
@@ -131,21 +131,21 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 						</div>
 
 						{/* REWIND BUTTON (Hold to seek backward) */}
-						<div className="p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)] ">
+						<div className="p-[2px] sm:p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)] ">
 							<button
 								onMouseDown={startRewind}
 								onMouseUp={stopSeeking}
 								onMouseLeave={stopSeeking}
 								onTouchStart={startRewind}
 								onTouchEnd={stopSeeking}
-								className="group relative flex flex-col items-center justify-center w-[72px] h-[72px] bg-gradient-to-b from-[#d4d2cf] to-[#b8b6b3] rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+								className="group relative flex flex-col items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px] bg-gradient-to-b from-[#d4d2cf] to-[#b8b6b3] rounded-[10px] sm:rounded-[11px] md:rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
                    active:shadow-[inset_0.5px_0.5px_4px_#000000] 
                    active:translate-y-[1px] transition-all  active:translate-y-[2px] transition-all">
-								<span className="text-te-dark font-bold text-[9px] tracking-[0.15em] mb-1.5 uppercase">
+								<span className="text-te-dark font-bold text-[8px] sm:text-[8.5px] md:text-[9px] tracking-[0.15em] mb-1 sm:mb-1.5 uppercase">
 									Rewind
 								</span>
 								<svg
-									className="w-5 h-5 fill-te-dark group-active:scale-90 transition-transform"
+									className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 fill-te-dark group-active:scale-90 transition-transform"
 									viewBox="0 0 24 24">
 									<path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" />
 								</svg>
@@ -158,13 +158,13 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 						{/* Turntable Base */}
 						<div className="absolute inset-0 bg-gradient-to-b from-[#1a1816] to-[#0d0b0a] rounded-full blur-xl opacity-50" />
 
-						<div className="relative p-5 bg-gradient-to-b from-[#3a3836] to-[#2a2826] rounded-full shadow-[inset_0_4px_12px_rgba(0,0,0,0.6),_0_4px_20px_rgba(0,0,0,0.4)]">
+						<div className="relative p-3 sm:p-4 md:p-5 bg-gradient-to-b from-[#3a3836] to-[#2a2826] rounded-full shadow-[inset_0_4px_12px_rgba(0,0,0,0.6),_0_4px_20px_rgba(0,0,0,0.4)]">
 							{/* Platter Ring */}
-							<div className="absolute inset-3 rounded-full border-2 border-[#1a1816]/40" />
+							<div className="absolute inset-2 sm:inset-2.5 md:inset-3 rounded-full border-[1.5px] sm:border-2 border-[#1a1816]/40" />
 
 							<motion.div
 								style={{ rotate }}
-								className="w-80 h-80 rounded-full bg-gradient-to-br from-[#1a1816] to-[#0a0908] flex items-center justify-center relative overflow-hidden shadow-[0_0_0_3px_#0a0908,_inset_0_2px_8px_rgba(0,0,0,0.8)]"
+								className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-[#1a1816] to-[#0a0908] flex items-center justify-center relative overflow-hidden shadow-[0_0_0_3px_#0a0908,_inset_0_2px_8px_rgba(0,0,0,0.8)]"
 								animate={
 									isPlaying
 										? { rotate: rotate.get() + 360 }
@@ -193,7 +193,7 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 										e.stopPropagation();
 										sdk?.togglePlay();
 									}}
-									className="relative w-36 h-36 rounded-full overflow-hidden z-20 shadow-[0_0_0_4px_#0a0908,_0_0_20px_rgba(0,0,0,0.6),_inset_0_2px_4px_rgba(255,255,255,0.1)] hover:scale-[1.02] active:scale-[0.98] transition-transform group border-2 border-[#1a1816]">
+									className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden z-20 shadow-[0_0_0_4px_#0a0908,_0_0_20px_rgba(0,0,0,0.6),_inset_0_2px_4px_rgba(255,255,255,0.1)] hover:scale-[1.02] active:scale-[0.98] transition-transform group border-2 border-[#1a1816]">
 									{albumArt ? (
 										<>
 											{/* Album Art - Full Color */}
@@ -206,16 +206,16 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 											<div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/20 pointer-events-none" />
 											{/* Play/Pause Indicator */}
 											<div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
-												<div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+												<div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
 													{isPlaying ? (
 														<svg
-															className="w-5 h-5 fill-white"
+															className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 fill-white"
 															viewBox="0 0 24 24">
 															<path d="M6 4h4v16H6zm8 0h4v16h-4z" />
 														</svg>
 													) : (
 														<svg
-															className="w-5 h-5 fill-white ml-0.5"
+															className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 fill-white ml-0.5"
 															viewBox="0 0 24 24">
 															<path d="M8 5v14l11-7z" />
 														</svg>
@@ -225,7 +225,7 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 										</>
 									) : (
 										<div className="w-full h-full bg-gradient-to-br from-[#ff4438] to-[#cc3326] flex items-center justify-center">
-											<span className="text-white text-xs font-bold tracking-[0.2em] uppercase">
+											<span className="text-white text-[10px] sm:text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase">
 												No Track
 											</span>
 										</div>
@@ -234,30 +234,30 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 
 								{/* Spindle Hole */}
 								<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-									<div className="w-3 h-3 rounded-full bg-[#0a0908] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8),_0_0_0_1px_#1a1816]" />
+									<div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#0a0908] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8),_0_0_0_1px_#1a1816]" />
 								</div>
 							</motion.div>
 						</div>
 					</div>
 
 					{/* RIGHT SIDE - FAST FORWARD & NEXT TRACK */}
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-2 sm:gap-3">
 						{/* FAST FORWARD BUTTON (Hold to seek forward) */}
-						<div className="p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+						<div className="p-[2px] sm:p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
 							<button
 								onMouseDown={startFastForward}
 								onMouseUp={stopSeeking}
 								onMouseLeave={stopSeeking}
 								onTouchStart={startFastForward}
 								onTouchEnd={stopSeeking}
-								className="group relative flex flex-col items-center justify-center w-[72px] h-[72px] bg-gradient-to-b from-[#d4d2cf] to-[#b8b6b3] rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+								className="group relative flex flex-col items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px] bg-gradient-to-b from-[#d4d2cf] to-[#b8b6b3] rounded-[10px] sm:rounded-[11px] md:rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
                    active:shadow-[inset_0.5px_0.5px_4px_#000000] 
                    active:translate-y-[1px] transition-all  active:translate-y-[2px] transition-all">
-								<span className="text-te-dark font-bold text-[9px] tracking-[0.15em] mb-1.5 uppercase">
+								<span className="text-te-dark font-bold text-[8px] sm:text-[8.5px] md:text-[9px] tracking-[0.15em] mb-1 sm:mb-1.5 uppercase">
 									FF
 								</span>
 								<svg
-									className="w-5 h-5 fill-te-dark group-active:scale-90 transition-transform"
+									className="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 fill-te-dark group-active:scale-90 transition-transform"
 									viewBox="0 0 24 24">
 									<path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
 								</svg>
@@ -265,17 +265,17 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 						</div>
 
 						{/* NEXT TRACK BUTTON */}
-						<div className="p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+						<div className="p-[2px] sm:p-[2.5px] bg-[#0a0a0a] rounded-[5px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
 							<button
 								onClick={() => sdk?.nextTrack()}
-								className="group relative flex flex-col items-center justify-center w-[72px] h-[72px] bg-te-red rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
+								className="group relative flex flex-col items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] md:w-[72px] md:h-[72px] bg-te-red rounded-[10px] sm:rounded-[11px] md:rounded-[12px] shadow-[inset_1.5px_1.5px_2px_rgba(255,255,255,0.2),3.2px_3.2px_8px_rgba(0,0,0,0.4)]
                    active:shadow-[inset_0.5px_0.5px_4px_#000000] 
                    active:translate-y-[1px] transition-all  active:translate-y-[2px] transition-all">
-								<span className="text-te-gray font-bold text-[8px] tracking-[0.15em] mb-1 uppercase">
+								<span className="text-te-gray font-bold text-[7px] sm:text-[7.5px] md:text-[8px] tracking-[0.15em] mb-0.5 sm:mb-1 uppercase">
 									Next
 								</span>
 								<svg
-									className="w-4 h-4 fill-te-gray group-active:scale-90 transition-transform"
+									className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-te-gray group-active:scale-90 transition-transform"
 									viewBox="0 0 24 24">
 									<path d="M6 18l8.5-6L6 6zm9 0h2V6h-2z" />
 								</svg>
@@ -285,26 +285,26 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 				</div>
 
 				{/* TRACK INFORMATION & PROGRESS */}
-				<div className="flex flex-col items-center justify-self-center mt-8 gap-3 w-full max-w-md">
+				<div className="flex flex-col items-center justify-self-center mt-4 sm:mt-6 md:mt-8 gap-2 sm:gap-2.5 md:gap-3 w-full max-w-md">
 					{/* Track Info */}
 					{trackInfo && (
-						<div className="flex flex-col items-center gap-1.5 text-center">
-							<span className="text-[#2a2826] text-sm font-bold tracking-wide truncate max-w-md">
+						<div className="flex flex-col items-center gap-1 sm:gap-1.5 text-center">
+							<span className="text-[#2a2826] text-xs sm:text-sm font-bold tracking-wide truncate max-w-[90vw] sm:max-w-md px-2">
 								{trackInfo.name}
 							</span>
-							<span className="text-[#6a6866] text-xs font-medium tracking-wide truncate max-w-md">
+							<span className="text-[#6a6866] text-[11px] sm:text-xs font-medium tracking-wide truncate max-w-[90vw] sm:max-w-md px-2">
 								{trackInfo.artist}
 							</span>
-							<span className="text-[#8a8885] text-[10px] font-medium tracking-wider uppercase truncate max-w-md">
+							<span className="text-[#8a8885] text-[9px] sm:text-[10px] font-medium tracking-wider uppercase truncate max-w-[90vw] sm:max-w-md px-2">
 								{trackInfo.album}
 							</span>
 						</div>
 					)}
 
 					{/* Progress Bar - Clickable */}
-					<div className="w-full px-4">
-						<div className="flex items-center gap-3">
-							<span className="text-[#6a6866] text-[9px] font-mono tabular-nums">
+					<div className="w-full px-2 sm:px-3 md:px-4">
+						<div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
+							<span className="text-[#6a6866] text-[8px] sm:text-[9px] font-mono tabular-nums">
 								{formatTime(position)}
 							</span>
 							<div
@@ -315,7 +315,7 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 									style={{ width: `${progress}%` }}
 								/>
 							</div>
-							<span className="text-[#6a6866] text-[9px] font-mono tabular-nums">
+							<span className="text-[#6a6866] text-[8px] sm:text-[9px] font-mono tabular-nums">
 								{formatTime(duration)}
 							</span>
 						</div>
@@ -323,20 +323,20 @@ export default function VinylPlayer({ sdk, isPlaying, albumArt }) {
 				</div>
 
 				{/* Bottom edge shadow */}
-				<div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent rounded-b-[32px]" />
+				<div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent rounded-b-[20px] sm:rounded-b-[28px] md:rounded-b-[32px]" />
 			</div>
 
 			{/* Status Display - EP-133 Style */}
-			<div className="mt-5 flex flex-col items-center gap-2">
-				<div className="flex items-center gap-3 px-6 py-2.5 bg-[#2a2826] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] border border-[#1a1816]">
+			<div className="mt-3 sm:mt-4 md:mt-5 mb-4 sm:mb-6 md:mb-8 flex flex-col items-center gap-1.5 sm:gap-2">
+				<div className="flex items-center gap-2 sm:gap-2.5 md:gap-3 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-[#2a2826] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] border border-[#1a1816]">
 					<div
-						className={`w-2 h-2 rounded-full ${isPlaying ? "bg-[#ff4438] animate-pulse" : "bg-te-red"} shadow-[0_0_8px_currentColor]`}
+						className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isPlaying ? "bg-[#ff4438] animate-pulse" : "bg-te-red"} shadow-[0_0_8px_currentColor]`}
 					/>
-					<span className="text-[#e8e6e3] text-[10px] font-bold tracking-[0.3em] uppercase">
+					<span className="text-[#e8e6e3] text-[9px] sm:text-[10px] font-bold tracking-[0.25em] sm:tracking-[0.3em] uppercase">
 						{isPlaying ? "Recording" : "Standby"}
 					</span>
 				</div>
-				<span className="text-[#8a8885] text-[8px] font-medium tracking-[0.25em] uppercase">
+				<span className="text-[#8a8885] text-[7px] sm:text-[8px] font-medium tracking-[0.2em] sm:tracking-[0.25em] uppercase">
 					Teenage Engineering Vinyl Player
 				</span>
 			</div>

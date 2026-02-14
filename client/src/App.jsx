@@ -103,7 +103,7 @@ export default function App() {
 	}
 
 	return (
-		<div className="flex bg-[#e8e6e3] gap-8 px-6 min-h-screen overflow-hidden">
+		<div className="grid grid-cols-1 lg:flex bg-[#e8e6e3] gap-8 px-6 min-h-screen overflow-hidden">
 			<VinylPlayer
 				sdk={player}
 				isPlaying={state ? !state.paused : false}
