@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -5,6 +6,12 @@
 	--color-te-dark: #545251;
 	--color-te-red: #d42a02;
 	--color-te-orange: #fb702c;
+}
+
+html,
+body,
+#root {
+	font-family: "Space Grotesk", "Helvetica Neue", sans-serif;
 }
 
 /* Custom shadows for the EP-133 feel */
@@ -25,4 +32,20 @@
 		10px 10px 8px rgba(0, 0, 0, 0.38),
 		inset 2px 2px 10px #fb702c,
 		inset -4px -4px 1px #d42a02;
+}
+
+/* Block copy/select behavior to avoid accidental mobile text selection during drags/taps */
+*,
+*::before,
+*::after {
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg {
+	-webkit-user-drag: none;
+	user-drag: none;
 }

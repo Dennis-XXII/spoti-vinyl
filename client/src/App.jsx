@@ -2,13 +2,20 @@ import { useEffect, useState } from "react";
 import { authUrl, getToken, getValidToken } from "./spotify";
 import VinylPlayer from "./components/VinylPlayer";
 import AlbumSelector from "./components/AlbumSelector";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("access_token"));
   const [player, setPlayer] = useState(null);
   const [state, setState] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
+  const [isAlbumPickerVisible, setIsAlbumPickerVisible] = useState(true);
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      setIsAlbumPickerVisible(false);
+    }
+  }, []);
 
   // Handle OAuth callback
   useEffect(() => {
@@ -138,13 +145,47 @@ export default function App() {
   }
 
   return (
-    <motion.div className='grid grid-cols-1 lg:flex bg-[#e8e6e3] gap-8 p-2 md:p-8 mx-auto min-h-screen overflow-hidden'>
-      <VinylPlayer
-        sdk={player}
-        isPlaying={state ? !state.paused : false}
-        albumArt={state?.track_window?.current_track?.album?.images[0]?.url}
-      />
-      <AlbumSelector token={token} sdk={player} />
+    <div className='relative min-h-screen bg-[#e8e6e3] overflow-hidden'>
+      <motion.div
+        className={`grid min-h-screen w-full ${
+          isAlbumPickerVisible
+            ? "gap-4 p-2 sm:p-4 md:p-6 grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(320px,1fr)]"
+            : "gap-0 px-2 sm:px-4 md:px-6 grid-cols-1"
+        }`}
+      >
+        <section
+          className={`flex items-center justify-center ${
+            isAlbumPickerVisible
+              ? "min-h-[75vh] lg:min-h-[calc(100vh-3rem)]"
+              : "min-h-screen"
+          }`}
+        >
+          <VinylPlayer
+            sdk={player}
+            token={token}
+            isPlaying={state ? !state.paused : false}
+            albumArt={state?.track_window?.current_track?.album?.images[0]?.url}
+            isFullScreen={!isAlbumPickerVisible}
+            isAlbumPickerVisible={isAlbumPickerVisible}
+            onToggleAlbumPicker={() => setIsAlbumPickerVisible((prev) => !prev)}
+          />
+        </section>
+
+        <AnimatePresence initial={false}>
+          {isAlbumPickerVisible && (
+            <motion.aside
+              key='album-picker'
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 24 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className='flex min-h-[25vh] lg:min-h-[calc(100vh-3rem)] items-center justify-center'
+            >
+              <AlbumSelector token={token} sdk={player} />
+            </motion.aside>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Visual Debug Footer 
 			<div className="fixed bottom-6 w-full text-center flex flex-col gap-2 pointer-events-none">
@@ -165,6 +206,6 @@ export default function App() {
 					</div>
 				)}
 			</div>*/}
-    </motion.div>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function AlbumSelector({ token, sdk }) {
   const [albums, setAlbums] = useState([]);
@@ -76,7 +76,7 @@ export default function AlbumSelector({ token, sdk }) {
   };
 
   return (
-    <div className="flex flex-col my-auto items-center justify-center gap-4 sm:gap-6 md:gap-6 p-4 sm:p-8 md:p-12 bg-gradient-to-b from-[#c4c2bf] to-[#a8a6a3] rounded-[20px] sm:rounded-[28px] md:rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.3)] border border-[#8a8885] font-['Space_Grotesk'] w-full max-w-lg mx-auto h-full">
+    <div className="relative flex flex-col my-auto items-center justify-center gap-4 sm:gap-6 md:gap-6 p-4 sm:p-8 md:p-12 bg-gradient-to-b from-[#c4c2bf] to-[#a8a6a3] rounded-[20px] sm:rounded-[28px] md:rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.3)] border border-[#8a8885] w-full max-w-lg lg:max-w-none mx-auto h-full max-h-[calc(100vh-3rem)] overflow-y-auto overflow-x-hidden">
       <div className='absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-[20px] sm:rounded-t-[28px] md:rounded-t-[32px]' />
 
       {/* SEARCH PANEL */}
